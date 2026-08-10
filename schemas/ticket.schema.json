@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/ticket.schema.json",
+  "title": "Ticket Store Record",
+  "type": "object",
+  "required": [
+    "ticket_id",
+    "user_id",
+    "complaint_type",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "ticket_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "complaint_type": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "OPEN",
+        "WAITING_CUSTOMER",
+        "IN_REVIEW",
+        "RESOLVED",
+        "CLOSED"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "resolution": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

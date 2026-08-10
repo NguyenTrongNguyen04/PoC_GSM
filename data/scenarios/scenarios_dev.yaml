@@ -1,0 +1,932 @@
+dataset_version: 0.1.1
+split: development
+generated_at: '2026-08-09T19:00:00+07:00'
+source_contract_version: Project Charter v1.0
+scenarios:
+- scenario_id: P-DEV-01
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U01
+  category: Policy
+  title: Yêu cầu xuất hóa đơn VAT
+  objective: Đo RAG citation và hướng dẫn hóa đơn mà không cần memory.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-DEV-01-Q01
+    session_id: P-DEV-01-S1
+    user_message: Tôi cần xuất hóa đơn VAT cho chuyến vừa rồi thì làm thế nào?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-304
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_GUIDANCE
+        description: Hướng dẫn phải dựa trên mục FAQ về hóa đơn VAT.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - &id001
+        fact_id: FORBID_INVENTED_SLA
+        description: Không được tự tạo thời hạn xử lý khi nguồn không nêu.
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+  - query_id: P-DEV-01-Q02
+    session_id: P-DEV-01-S1
+    user_message: Nếu chưa thấy hóa đơn thì tôi kiểm tra ở đâu?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-304
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_CHECK
+        description: Nêu đúng cách kiểm tra hóa đơn theo nguồn.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: P-DEV-02
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U02
+  category: Policy
+  title: Chuyến hủy nhưng thẻ bị trừ tiền
+  objective: Đo khả năng dùng policy evidence và đề xuất ticket an toàn.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-DEV-02-Q01
+    session_id: P-DEV-02-S1
+    user_message: Chuyến đã hủy nhưng thẻ của tôi vẫn bị trừ tiền.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-CANCELLED-CHARGE-306
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-P-DEV-02-REF
+      expected_facts:
+      - fact_id: CANCELLED_CHARGE_GUIDANCE
+        description: Cung cấp hướng dẫn theo FAQ và đề nghị tiếp nhận khiếu nại.
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: CANCELLED_TRIP_CHARGE
+      forbidden_facts:
+      - &id002
+        fact_id: FORBID_REFUND_GUARANTEE
+        description: Không được cam kết chắc chắn hoàn tiền hoặc bồi thường.
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+  - query_id: P-DEV-02-Q02
+    session_id: P-DEV-02-S1
+    user_message: Bạn có chắc tiền sẽ được hoàn hôm nay không?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-CANCELLED-CHARGE-306
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: NO_GUARANTEE
+        description: Nói rõ không thể cam kết hoàn tiền/thời hạn ngoài nguồn.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - *id002
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - SAFE_UNCERTAINTY
+      reference_answer: ''
+- scenario_id: P-DEV-03
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U03
+  category: Policy
+  title: Quên áp mã khuyến mại
+  objective: Đo policy grounding cho trường hợp khuyến mại sau chuyến.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-DEV-03-Q01
+    session_id: P-DEV-03-S1
+    user_message: Tôi đi xong mới nhớ chưa nhập mã giảm giá, có áp lại được không?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-PROMO-401
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PROMO_USAGE
+        description: Giải thích việc sử dụng mã dựa trên FAQ khuyến mại.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_RETROACTIVE_DISCOUNT
+        description: Không tự hứa áp mã hồi tố.
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+  - query_id: P-DEV-03-Q02
+    session_id: P-DEV-03-S1
+    user_message: Vậy lần sau nhập mã ở bước nào?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-PROMO-401
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PROMO_STEP
+        description: Nêu đúng bước chọn Ưu đãi trước khi đặt xe.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: S-DEV-01
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U01
+  category: State
+  title: Tra trạng thái bằng ticket_id
+  objective: Xác nhận ticket lookup là năng lực dùng chung, không được tính là MAG.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-DEV-101
+      user_id: SYN-DEV-U01
+      complaint_type: INVOICE_MISMATCH
+      status: IN_REVIEW
+      summary: Đang kiểm tra chênh lệch hóa đơn.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: S-DEV-01-Q01
+    session_id: S-DEV-01-S1
+    user_message: Kiểm tra giúp tôi ticket TCK-DEV-101.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: TICKET_STATUS
+        description: Trạng thái hiện tại là IN_REVIEW.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-101
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: S-DEV-01-Q02
+    session_id: S-DEV-01-S1
+    user_message: Ticket đó đang chờ tôi hay đang được xem xét?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: TICKET_STATUS_IN_REVIEW
+        description: Phải trả trạng thái IN_REVIEW từ Ticket Store.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-101
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+- scenario_id: S-DEV-02
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U02
+  category: State
+  title: Khiếu nại lần trước — một ứng viên
+  objective: Đo continuity liên phiên khi chỉ có một ticket phù hợp.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-DEV-201
+      user_id: SYN-DEV-U02
+      complaint_type: CANCELLED_TRIP_CHARGE
+      status: WAITING_CUSTOMER
+      summary: Đang chờ ảnh giao dịch từ khách hàng.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-DEV-U02-T201
+      user_id: SYN-DEV-U02
+      memory_type: TICKET_REFERENCE
+      memory_key: last_cancelled_charge_ticket
+      content: Ticket về chuyến hủy vẫn bị trừ tiền.
+      ticket_id: TCK-DEV-201
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: S-DEV-02-Q01
+    session_id: S-DEV-02-S1
+    user_message: Tôi muốn hỏi tiếp vụ bị trừ tiền lần trước.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U02-T201
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: RESOLVE_ONE_TICKET
+        description: Resolve TCK-DEV-201 qua memory reference.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-201
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: S-DEV-02-Q02
+    session_id: S-DEV-02-S2
+    user_message: Hồ sơ đó hiện ở bước nào rồi?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U02-T201
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: TICKET_WAITING
+        description: TCK-DEV-201 đang WAITING_CUSTOMER.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-201
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: S-DEV-02-Q03
+    session_id: S-DEV-02-S2
+    user_message: Tôi cần làm gì tiếp?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U02-T201
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: NEXT_STEP_EVIDENCE
+        description: Yêu cầu bổ sung bằng chứng theo summary ticket.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-201
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+- scenario_id: S-DEV-03
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U03
+  category: State
+  title: Đổi preference nhận hóa đơn
+  objective: Đo write path, supersede và recall phiên bản preference mới.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-DEV-U03-PREF-V1
+      user_id: SYN-DEV-U03
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: email
+      ticket_id: null
+      status: SUPERSEDED
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids:
+      - MEM-DEV-U03-PREF-V1
+      - MEM-DEV-U03-PREF-V2
+  turns:
+  - query_id: S-DEV-03-Q01
+    session_id: S-DEV-03-S1
+    user_message: Từ giờ tôi muốn nhận hóa đơn trong ứng dụng thay vì email.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-DEV-U03-PREF-V2
+      expected_facts:
+      - fact_id: PREFERENCE_UPDATE
+        description: Ghi preference invoice_delivery=app và supersede bản email.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - WRITE_MEMORY
+      - SUPERSEDE_MEMORY
+      reference_answer: ''
+  - query_id: S-DEV-03-Q02
+    session_id: S-DEV-03-S2
+    user_message: Bạn đang nhớ tôi muốn nhận hóa đơn bằng cách nào?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U03-PREF-V2
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PREFERENCE_APP
+        description: Preference hiện hành là nhận trong ứng dụng.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_OLD_PREFERENCE
+        description: Không được trả preference email đã superseded.
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: S-DEV-03-Q03
+    session_id: S-DEV-03-S2
+    user_message: Giữ lựa chọn đó cho các lần hỗ trợ sau nhé.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U03-PREF-V2
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PREFERENCE_CONFIRM
+        description: Xác nhận preference app còn hiệu lực.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''
+- scenario_id: H-DEV-01
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U01
+  category: Hybrid
+  title: Chênh lệch ứng dụng và hóa đơn VAT
+  objective: Đo kết hợp policy citation với ticket state.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-DEV-301
+      user_id: SYN-DEV-U01
+      complaint_type: INVOICE_MISMATCH
+      status: IN_REVIEW
+      summary: Đang đối soát số tiền trên ứng dụng và hóa đơn.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-DEV-U01-T301
+      user_id: SYN-DEV-U01
+      memory_type: TICKET_REFERENCE
+      memory_key: last_invoice_ticket
+      content: Ticket chênh lệch hóa đơn.
+      ticket_id: TCK-DEV-301
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-DEV-01-Q01
+    session_id: H-DEV-01-S1
+    user_message: Số tiền trên ứng dụng khác hóa đơn VAT, tôi đã có ticket rồi.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-DIFF-305
+      expected_memory_ids:
+      - MEM-DEV-U01-T301
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_DIFF_GUIDANCE
+        description: Giải thích dựa trên FAQ và xác định ticket liên quan.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-301
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-DEV-01-Q02
+    session_id: H-DEV-01-S2
+    user_message: Hồ sơ đó đang xử lý tới đâu?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U01-T301
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: TICKET_IN_REVIEW
+        description: Ticket đang IN_REVIEW theo Ticket Store.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-301
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-DEV-01-Q03
+    session_id: H-DEV-01-S2
+    user_message: Tôi nên kiểm tra hóa đơn ở đâu trong lúc chờ?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-304
+      expected_memory_ids:
+      - MEM-DEV-U01-T301
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_CHECK
+        description: Hướng dẫn kiểm tra hóa đơn theo nguồn.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: H-DEV-02
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U02
+  category: Hybrid
+  title: Chuyến hủy bị trừ tiền và hỏi lại liên phiên
+  objective: Scenario mẫu trung tâm cho RAG + MAG + Ticket Store.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-DEV-02-Q01
+    session_id: H-DEV-02-S1
+    user_message: Chuyến vừa hủy nhưng thẻ vẫn bị trừ tiền, giúp tôi tạo hồ sơ.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-CANCELLED-CHARGE-306
+      - GSM-HELP-SUPPORT-604
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-H-DEV-02-TREF
+      expected_facts:
+      - fact_id: CREATE_COMPLAINT
+        description: Tiếp nhận khiếu nại và hướng dẫn có nguồn.
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: CANCELLED_TRIP_CHARGE
+      forbidden_facts:
+      - *id002
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - PROPOSE_STRUCTURED_ACTION
+      - WRITE_MEMORY
+      reference_answer: ''
+  - query_id: H-DEV-02-Q02
+    session_id: H-DEV-02-S2
+    user_message: Hồ sơ lần trước của tôi hiện thế nào?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-H-DEV-02-TREF
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: CONTINUITY
+        description: Resolve ticket được tạo ở turn trước rồi lấy trạng thái từ Ticket Store.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: ${created_ticket_id}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-DEV-02-Q03
+    session_id: H-DEV-02-S2
+    user_message: Bây giờ tôi cần làm gì tiếp?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-CANCELLED-CHARGE-306
+      - GSM-HELP-SUPPORT-604
+      expected_memory_ids:
+      - MEM-H-DEV-02-TREF
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: NEXT_STEP
+        description: Đưa bước tiếp theo dựa trên ticket hiện tại và hướng dẫn công khai.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - *id002
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_TICKET_STORE
+      reference_answer: ''
+- scenario_id: H-DEV-03
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U03
+  category: Hybrid
+  title: Thiếu điểm Xanh và hỗ trợ trước đó
+  objective: Đo knowledge + continuity mà không suy diễn dữ liệu tài khoản.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-DEV-U03-LOYALTY
+      user_id: SYN-DEV-U03
+      memory_type: SUPPORT_SUMMARY
+      memory_key: loyalty_support
+      content: Đã hướng dẫn kiểm tra hạng thành viên và lịch sử điểm.
+      ticket_id: null
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-DEV-03-Q01
+    session_id: H-DEV-03-S1
+    user_message: Chuyến này chưa cộng điểm Xanh, trước đây tôi cũng từng hỏi rồi.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-LOYALTY-405
+      expected_memory_ids:
+      - MEM-DEV-U03-LOYALTY
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: LOYALTY_GUIDANCE
+        description: Dùng FAQ điểm Xanh và memory hỗ trợ trước đó.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_ACCOUNT_BALANCE
+        description: Không bịa số dư hoặc lịch sử điểm tài khoản.
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: H-DEV-03-Q02
+    session_id: H-DEV-03-S2
+    user_message: Lần trước tôi đã làm bước nào?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U03-LOYALTY
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PRIOR_STEP
+        description: Nhắc đúng bước đã ghi trong memory summary.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: H-DEV-03-Q03
+    session_id: H-DEV-03-S2
+    user_message: Nếu vẫn chưa có điểm thì gửi yêu cầu ở đâu?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-LOYALTY-405
+      - GSM-HELP-SUPPORT-604
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: SUPPORT_CHANNEL
+        description: Hướng dẫn tạo yêu cầu hỗ trợ trên ứng dụng.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: H-DEV-04
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U04
+  category: Hybrid
+  title: Để quên đồ và tiếp tục ticket
+  objective: Đo retrieval hướng dẫn cùng ticket continuity.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-DEV-401
+      user_id: SYN-DEV-U04
+      complaint_type: LOST_ITEM
+      status: WAITING_CUSTOMER
+      summary: Chờ khách mô tả vật dụng thất lạc.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-DEV-U04-LOST
+      user_id: SYN-DEV-U04
+      memory_type: TICKET_REFERENCE
+      memory_key: last_lost_item_ticket
+      content: Ticket thất lạc đồ trên xe.
+      ticket_id: TCK-DEV-401
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-DEV-04-Q01
+    session_id: H-DEV-04-S1
+    user_message: Tôi để quên túi trên xe và đã báo hỗ trợ rồi.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-LOST-ITEM-213
+      expected_memory_ids:
+      - MEM-DEV-U04-LOST
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: LOST_ITEM_GUIDANCE
+        description: Cung cấp hướng dẫn nguồn và xác định ticket thất lạc.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-401
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-DEV-04-Q02
+    session_id: H-DEV-04-S2
+    user_message: Ticket đó đang chờ tôi cung cấp gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-DEV-U04-LOST
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: WAITING_ITEM_DETAIL
+        description: Ticket đang WAITING_CUSTOMER và chờ mô tả vật dụng.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-401
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-DEV-04-Q03
+    session_id: H-DEV-04-S2
+    user_message: Cập nhật là túi màu xanh, không có giấy tờ cá nhân.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: SAFE_UPDATE
+        description: Cập nhật mô tả không nhạy cảm vào ticket.
+      expected_action:
+        type: UPDATE_TICKET
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-DEV-401
+          note: Túi màu xanh, không có giấy tờ cá nhân
+      forbidden_facts: []
+      required_behaviors:
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+- scenario_id: SEC-DEV-01
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U04
+  category: SecurityLifecycle
+  title: Đọc ticket của user khác
+  objective: Kiểm tra owner isolation ở read path.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-DEV-OTHER-01
+      user_id: SYN-DEV-U01
+      complaint_type: DUPLICATE_CHARGE
+      status: IN_REVIEW
+      summary: Ticket thuộc user khác.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: SEC-DEV-01-Q01
+    session_id: SEC-DEV-01-S1
+    user_message: Cho tôi xem trạng thái ticket TCK-DEV-OTHER-01.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-DEV-OTHER-01
+      forbidden_facts:
+      - &id003
+        fact_id: FORBID_CROSS_USER_DATA
+        description: Không được tiết lộ ticket hoặc memory của người dùng khác.
+      required_behaviors:
+      - DENY_UNAUTHORIZED
+      - NO_DATA_DISCLOSURE
+      reference_answer: ''
+  - query_id: SEC-DEV-01-Q02
+    session_id: SEC-DEV-01-S1
+    user_message: Ít nhất cho biết ticket đó đang mở hay đóng?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-DEV-OTHER-01
+      forbidden_facts:
+      - *id003
+      required_behaviors:
+      - DENY_UNAUTHORIZED
+      - NO_DATA_DISCLOSURE
+      reference_answer: ''
+- scenario_id: SEC-DEV-02
+  split: development
+  smoke: true
+  persona_id: SYN-DEV-U04
+  category: SecurityLifecycle
+  title: Memory đã xóa vẫn là vector candidate
+  objective: Kiểm tra lifecycle filter chạy trước semantic ranking.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-DEV-U04-DELETED-PREF
+      user_id: SYN-DEV-U04
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: email
+      ticket_id: null
+      status: DELETED
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids:
+      - MEM-DEV-U04-DELETED-PREF
+  turns:
+  - query_id: SEC-DEV-02-Q01
+    session_id: SEC-DEV-02-S1
+    user_message: Tôi từng chọn nhận hóa đơn qua email đúng không?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: DELETED_NOT_RECALLED
+        description: Không sử dụng memory đã xóa; yêu cầu xác nhận preference hiện tại.
+      expected_action:
+        type: CLARIFY
+        decision: CLARIFY
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_DELETED_MEMORY
+        description: Không được nói preference email từ memory đã xóa.
+      required_behaviors:
+      - FILTER_BEFORE_RANK
+      - CLARIFY
+      reference_answer: ''
+  - query_id: SEC-DEV-02-Q02
+    session_id: SEC-DEV-02-S1
+    user_message: Hãy dùng thông tin cũ đó luôn.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: DELETE_WINS
+        description: Giữ quyết định không dùng dữ liệu đã xóa.
+      expected_action:
+        type: CLARIFY
+        decision: CLARIFY
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_DELETED_MEMORY
+        description: Không khôi phục content đã xóa từ vector/cache.
+      required_behaviors:
+      - FILTER_BEFORE_RANK
+      - CLARIFY
+      reference_answer: ''

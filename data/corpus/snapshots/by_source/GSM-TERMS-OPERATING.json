@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-TERMS-OPERATING",
+  "title": "Quy chế hoạt động",
+  "canonical_url": "https://www.greensm.com/vn-vi/terms-policies/regulations",
+  "requested_url": "https://www.greensm.com/vn-vi/terms-policies/regulations",
+  "final_url": "https://www.greensm.com/vn-vi/terms-policies/regulations",
+  "content_selector": "page",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:29+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "2d2247f4011082b676975e9e39b74b88dfc8ae1c3d27c96dd7a1771769fda55d",
+  "content_sha256": "292c470e4800273f39b2515d58df0381edf6c8a71c4a4051eab68458b8c808cc",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "Quy chế hoạt động\nOfficial Green SM operating regulations are published on this page as 56 sequential scanned page images. Text OCR is out of scope for Pass B; retrieval unit captures stable image URLs for provenance.\nPage 1: https://www.greensm.com/images/regulations/quychehoatdong-1.jpg\nPage 2: https://www.greensm.com/images/regulations/quychehoatdong-2.jpg\nPage 3: https://www.greensm.com/images/regulations/quychehoatdong-3.jpg\nPage 4: https://www.greensm.com/images/regulations/quychehoatdong-4.jpg\nPage 5: https://www.greensm.com/images/regulations/quychehoatdong-5.jpg\nPage 6: https://www.greensm.com/images/regulations/quychehoatdong-6.jpg\nPage 7: https://www.greensm.com/images/regulations/quychehoatdong-7.jpg\nPage 8: https://www.greensm.com/images/regulations/quychehoatdong-8.jpg\nPage 9: https://www.greensm.com/images/regulations/quychehoatdong-9.jpg\nPage 10: https://www.greensm.com/images/regulations/quychehoatdong-10.jpg\nPage 11: https://www.greensm.com/images/regulations/quychehoatdong-11.jpg\nPage 12: https://www.greensm.com/images/regulations/quychehoatdong-12.jpg\nPage 13: https://www.greensm.com/images/regulations/quychehoatdong-13.jpg\nPage 14: https://www.greensm.com/images/regulations/quychehoatdong-14.jpg\nPage 15: https://www.greensm.com/images/regulations/quychehoatdong-15.jpg\nPage 16: https://www.greensm.com/images/regulations/quychehoatdong-16.jpg\nPage 17: https://www.greensm.com/images/regulations/quychehoatdong-17.jpg\nPage 18: https://www.greensm.com/images/regulations/quychehoatdong-18.jpg\nPage 19: https://www.greensm.com/images/regulations/quychehoatdong-19.jpg\nPage 20: https://www.greensm.com/images/regulations/quychehoatdong-20.jpg\nPage 21: https://www.greensm.com/images/regulations/quychehoatdong-21.jpg\nPage 22: https://www.greensm.com/images/regulations/quychehoatdong-22.jpg\nPage 23: https://www.greensm.com/images/regulations/quychehoatdong-23.jpg\nPage 24: https://www.greensm.com/images/regulations/quychehoatdong-24.jpg\nPage 25: https://www.greensm.com/images/regulations/quychehoatdong-25.jpg\nPage 26: https://www.greensm.com/images/regulations/quychehoatdong-26.jpg\nPage 27: https://www.greensm.com/images/regulations/quychehoatdong-27.jpg\nPage 28: https://www.greensm.com/images/regulations/quychehoatdong-28.jpg\nPage 29: https://www.greensm.com/images/regulations/quychehoatdong-29.jpg\nPage 30: https://www.greensm.com/images/regulations/quychehoatdong-30.jpg\nPage 31: https://www.greensm.com/images/regulations/quychehoatdong-31.jpg\nPage 32: https://www.greensm.com/images/regulations/quychehoatdong-32.jpg\nPage 33: https://www.greensm.com/images/regulations/quychehoatdong-33.jpg\nPage 34: https://www.greensm.com/images/regulations/quychehoatdong-34.jpg\nPage 35: https://www.greensm.com/images/regulations/quychehoatdong-35.jpg\nPage 36: https://www.greensm.com/images/regulations/quychehoatdong-36.jpg\nPage 37: https://www.greensm.com/images/regulations/quychehoatdong-37.jpg\nPage 38: https://www.greensm.com/images/regulations/quychehoatdong-38.jpg\nPage 39: https://www.greensm.com/images/regulations/quychehoatdong-39.jpg\nPage 40: https://www.greensm.com/images/regulations/quychehoatdong-40.jpg\nPage 41: https://www.greensm.com/images/regulations/quychehoatdong-41.jpg\nPage 42: https://www.greensm.com/images/regulations/quychehoatdong-42.jpg\nPage 43: https://www.greensm.com/images/regulations/quychehoatdong-43.jpg\nPage 44: https://www.greensm.com/images/regulations/quychehoatdong-44.jpg\nPage 45: https://www.greensm.com/images/regulations/quychehoatdong-45.jpg\nPage 46: https://www.greensm.com/images/regulations/quychehoatdong-46.jpg\nPage 47: https://www.greensm.com/images/regulations/quychehoatdong-47.jpg\nPage 48: https://www.greensm.com/images/regulations/quychehoatdong-48.jpg\nPage 49: https://www.greensm.com/images/regulations/quychehoatdong-49.jpg\nPage 50: https://www.greensm.com/images/regulations/quychehoatdong-50.jpg\nPage 51: https://www.greensm.com/images/regulations/quychehoatdong-51.jpg\nPage 52: https://www.greensm.com/images/regulations/quychehoatdong-52.jpg\nPage 53: https://www.greensm.com/images/regulations/quychehoatdong-53.jpg\nPage 54: https://www.greensm.com/images/regulations/quychehoatdong-54.jpg\nPage 55: https://www.greensm.com/images/regulations/quychehoatdong-55.jpg\nPage 56: https://www.greensm.com/images/regulations/quychehoatdong-56.jpg",
+  "char_count": 4343,
+  "topic_tags": [
+    "regulation"
+  ],
+  "priority": "medium",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": null
+}

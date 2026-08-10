@@ -1,0 +1,65 @@
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python cache / tooling
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Local databases / runtime state
+*.sqlite
+*.sqlite3
+*.db
+
+# Runtime / temporary artifacts (keep governed live_staging)
+artifacts/b0_runs/
+artifacts/offline_staging/
+artifacts/publish_backup/
+artifacts/_probe*
+artifacts/_test*
+artifacts/**/*.zip
+artifacts/**/*handoff*
+!artifacts/.gitkeep
+!artifacts/live_staging/
+!artifacts/live_staging/**
+
+# Corpus caches / staging scratch
+data/corpus/raw_cache/
+data/corpus/snapshots/raw_cache/
+data/corpus/snapshots/.staging/
+data/corpus/snapshots/by_source.bak/
+
+# Logs / temp
+logs/
+tmp/
+temp/
+*.log
+
+# Handoff / local archives
+Ban01.zip
+Ban02.zip
+*handoff*.zip
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

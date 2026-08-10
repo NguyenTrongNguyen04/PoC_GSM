@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.2.0",
+  "source_id": "GSM-HELP-PAYMENT-301",
+  "title": "FAQ 3.1 — Phương thức thanh toán",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:3.1",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-10T07:00:31+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "2982a25e66f06f26f792c01ce1ef88bc4368e7db06cde1d87d0680d0418761e0",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.2.0",
+  "normalizer_version": "0.1.0",
+  "materializer_version": "0.2.0",
+  "materialization_mode": "next_content_faq",
+  "materialization_payload_sha256": "e73f8d52a13c76ce2729272fc85f9bb1f8ed43717cbb011aec200fa4cf37555b",
+  "content_kind": "text",
+  "ocr_status": null,
+  "text_retrieval_eligible": true,
+  "asset_urls": [],
+  "normalized_text": "3.1. Hướng dẫn thêm mới/cập nhật phương thức thanh toán\nThêm hoặc cập nhật phương thức thanh toán của bạn chỉ cần một vài bước đơn giản:\nBước 1: Nhấn vào “Tài khoản” ở góc dưới bên phải của màn hình chính.\nBước 2: Chọn “Thanh toán” và chọn loại hình thanh toán muốn thêm trong “Thêm phương thức thanh toán”.\nBước 3: Điền thông tin cần thiết và hoàn tất cài đặt.\nNgoài ra, bạn cũng có thể thêm hoặc chọn phương thức thanh toán phù hợp tại màn hình đặt xe:\n1/ Chọn biểu tượng thanh toán ở cạnh mục \"Ưu đãi”.\n2/ Chọn phương thức thanh toán đã có sẵn tại “Phương thức thanh toán khả dụng” hoặc chọn “Thêm phương thức thanh toán” để thêm mới.\n3/ Điền thông tin cần thiết và hoàn tất cài đặt.\nĐơn giản và tiện lợi đúng không?",
+  "char_count": 719,
+  "topic_tags": [
+    "payment"
+  ],
+  "priority": "medium",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": [
+    "3.1"
+  ]
+}

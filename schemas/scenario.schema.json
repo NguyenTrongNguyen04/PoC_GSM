@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/scenario.schema.json",
+  "title": "RAG-MAG Scenario Dataset",
+  "type": "object",
+  "required": [
+    "dataset_version",
+    "split",
+    "scenarios"
+  ],
+  "properties": {
+    "dataset_version": {
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "development",
+        "held_out"
+      ]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_contract_version": {
+      "type": "string"
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scenario_id",
+          "split",
+          "smoke",
+          "persona_id",
+          "category",
+          "title",
+          "objective",
+          "initial_state",
+          "turns"
+        ],
+        "properties": {
+          "scenario_id": {
+            "type": "string",
+            "pattern": "^[A-Z]+-(DEV|EVAL)-[0-9]{2}$"
+          },
+          "split": {
+            "enum": [
+              "development",
+              "held_out"
+            ]
+          },
+          "smoke": {
+            "type": "boolean"
+          },
+          "persona_id": {
+            "type": "string",
+            "pattern": "^SYN-(DEV|EVAL)-U[0-9]{2}$"
+          },
+          "category": {
+            "enum": [
+              "Policy",
+              "State",
+              "Hybrid",
+              "SecurityLifecycle"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 5
+          },
+          "objective": {
+            "type": "string",
+            "minLength": 10
+          },
+          "initial_state": {
+            "type": "object"
+          },
+          "turns": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

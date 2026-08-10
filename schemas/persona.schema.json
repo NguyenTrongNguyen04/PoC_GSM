@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/persona.schema.json",
+  "title": "Synthetic Persona Dataset",
+  "type": "object",
+  "required": [
+    "dataset_version",
+    "is_fully_synthetic",
+    "personas"
+  ],
+  "properties": {
+    "dataset_version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_fully_synthetic": {
+      "const": true
+    },
+    "personas": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8
+    }
+  },
+  "additionalProperties": false
+}

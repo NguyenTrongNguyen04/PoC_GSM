@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/trace.schema.json",
+  "title": "Experiment Trace Record",
+  "type": "object",
+  "required": [
+    "run_id",
+    "baseline_id",
+    "scenario_id",
+    "query_id",
+    "started_at",
+    "status"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "baseline_id": {
+      "enum": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ]
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "query_id": {
+      "type": "string"
+    },
+    "trusted_user_id": {
+      "type": "string"
+    },
+    "retrieved_doc_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retrieved_memory_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ticket_calls": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "policy_decision": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "answer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "structured_action": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "input_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "output_tokens": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "latency_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "estimated_cost_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "SUCCESS",
+        "FAILED",
+        "BLOCKED",
+        "SKIPPED"
+      ]
+    },
+    "error": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

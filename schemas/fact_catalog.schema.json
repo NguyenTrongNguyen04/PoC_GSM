@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/fact_catalog.schema.json",
+  "title": "Fact Catalog v0.2.1",
+  "type": "object",
+  "required": ["catalog_version", "facts", "review"],
+  "properties": {
+    "catalog_version": { "type": "string" },
+    "parser_contract": { "type": "string" },
+    "catalog_role": {
+      "enum": ["production", "offline_fixture"]
+    },
+    "notes": { "type": "string" },
+    "review": {
+      "type": "object",
+      "required": ["review_status"],
+      "properties": {
+        "reviewed_by": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"] },
+        "review_status": {
+          "enum": ["pending_research_review", "approved", "rejected"]
+        },
+        "reviewed_snapshot_sha256": {
+          "type": ["string", "null"],
+          "pattern": "^([a-f0-9]{64})?$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "fact_id",
+          "evidence_kind",
+          "evidence_status",
+          "source_id",
+          "evidence_spans",
+          "structured_evidence_refs"
+        ],
+        "properties": {
+          "fact_id": { "type": "string" },
+          "evidence_kind": {
+            "enum": [
+              "CORPUS",
+              "TICKET_FIXTURE",
+              "MEMORY_FIXTURE",
+              "POLICY_RULE",
+              "NEGATIVE_CONSTRAINT"
+            ]
+          },
+          "evidence_status": {
+            "enum": [
+              "candidate",
+              "candidate_live",
+              "approved",
+              "rejected",
+              "pending_live_review"
+            ]
+          },
+          "source_id": { "type": ["string", "null"] },
+          "claim_type": { "type": "string" },
+          "description": { "type": "string" },
+          "source_content_sha256": {
+            "type": ["string", "null"],
+            "pattern": "^([a-f0-9]{64})?$"
+          },
+          "evidence_spans": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["quote", "start_codepoint", "end_codepoint"],
+              "properties": {
+                "quote": { "type": "string" },
+                "start_codepoint": { "type": "integer", "minimum": 0 },
+                "end_codepoint": { "type": "integer", "minimum": 0 }
+              },
+              "additionalProperties": false
+            }
+          },
+          "structured_evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["ref_type", "ref_id"],
+              "properties": {
+                "ref_type": { "type": "string" },
+                "ref_id": { "type": "string" },
+                "path": { "type": ["string", "null"] },
+                "notes": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

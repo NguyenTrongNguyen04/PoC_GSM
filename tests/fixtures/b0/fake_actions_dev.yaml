@@ -1,0 +1,172 @@
+# Deterministic FakeLLM fixtures for development runtime harness.
+# These are test doubles — NOT ground-truth labels and NOT model-quality claims.
+# quality_claim: false
+# purpose: runtime_infrastructure_validation
+
+actions:
+  - query_id: P-DEV-01-Q01
+    action_type: NONE
+    reason: FAQ invoice guidance only
+    answer_text: Vui lòng xem hướng dẫn xuất hóa đơn VAT trên nguồn hỗ trợ công khai.
+
+  - query_id: P-DEV-01-Q02
+    action_type: NONE
+    reason: FAQ invoice check only
+    answer_text: Bạn có thể kiểm tra trạng thái hóa đơn theo hướng dẫn FAQ.
+
+  - query_id: P-DEV-02-Q01
+    action_type: CREATE_TICKET
+    complaint_type: CANCELLED_TRIP_CHARGE
+    reason: User reports cancelled trip charge
+    answer_text: Tôi sẽ tạo hồ sơ hỗ trợ về khoản trừ sau khi hủy chuyến.
+
+  - query_id: P-DEV-02-Q02
+    action_type: NONE
+    reason: Policy description without ticket mutation
+    answer_text: Theo chính sách công khai, thời gian hoàn có thể phụ thuộc ngân hàng.
+
+  - query_id: P-DEV-03-Q01
+    action_type: NONE
+    reason: Promo FAQ only
+    answer_text: Mã khuyến mãi cần đáp ứng điều kiện công bố trên nguồn hỗ trợ.
+
+  - query_id: P-DEV-03-Q02
+    action_type: NONE
+    reason: Loyalty FAQ only
+    answer_text: Hạng thành viên được mô tả trên nguồn hỗ trợ công khai.
+
+  - query_id: S-DEV-01-Q01
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-101
+    reason: Status check for owned ticket
+    answer_text: Đang kiểm tra trạng thái hồ sơ của bạn.
+
+  - query_id: S-DEV-01-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-101
+    reason: Follow-up status check
+    answer_text: Hồ sơ vẫn đang được xử lý theo trạng thái hiện tại.
+
+  - query_id: S-DEV-02-Q01
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-201
+    reason: Waiting customer status
+    answer_text: Hồ sơ đang chờ thông tin bổ sung từ bạn.
+
+  - query_id: S-DEV-02-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-201
+    reason: Waiting customer follow-up
+    answer_text: Vẫn đang chờ thông tin để tiếp tục xử lý.
+
+  - query_id: S-DEV-02-Q03
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-201
+    reason: Waiting customer third check
+    answer_text: Trạng thái hồ sơ chưa đổi.
+
+  - query_id: S-DEV-03-Q01
+    action_type: NONE
+    reason: Memory preference out of B0 scope
+    answer_text: Tôi ghi nhận yêu cầu preference; B0 chưa ghi memory.
+
+  - query_id: S-DEV-03-Q02
+    action_type: NONE
+    reason: Superseded preference must not be used
+    answer_text: Tôi sẽ hỏi lại preference hiện tại thay vì dùng dữ liệu cũ.
+
+  - query_id: S-DEV-03-Q03
+    action_type: NONE
+    reason: Preference confirmation without ticket write
+    answer_text: Preference sẽ được xử lý ở baseline memory sau này.
+
+  - query_id: H-DEV-01-Q01
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-301
+    reason: Hybrid status + RAG later
+    answer_text: Đang kiểm tra hồ sơ hóa đơn của bạn.
+
+  - query_id: H-DEV-01-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-301
+    reason: Hybrid status follow-up
+    answer_text: Hồ sơ vẫn ở trạng thái đang đối soát.
+
+  - query_id: H-DEV-01-Q03
+    action_type: NONE
+    reason: Cite source without mutation
+    answer_text: Bạn có thể đối chiếu với hướng dẫn hóa đơn công khai.
+
+  - query_id: H-DEV-02-Q01
+    action_type: CREATE_TICKET
+    complaint_type: CANCELLED_TRIP_CHARGE
+    reason: Create then track ticket
+    answer_text: Tôi sẽ tạo hồ sơ hỗ trợ cho khoản trừ sau hủy chuyến.
+
+  - query_id: H-DEV-02-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: $LATEST_OWNED_TICKET
+    reason: Status of ticket created in prior turn
+    answer_text: Đang kiểm tra hồ sơ vừa tạo.
+
+  - query_id: H-DEV-02-Q03
+    action_type: NONE
+    reason: Guidance without mutation
+    answer_text: Bạn có thể theo dõi hồ sơ theo hướng dẫn công khai; assistant không hứa kết quả hoàn cho trường hợp cá biệt.
+
+  - query_id: H-DEV-03-Q01
+    action_type: NONE
+    reason: Loyalty summary without invented balance
+    answer_text: Tôi chỉ mô tả hướng dẫn hạng thành viên công khai.
+
+  - query_id: H-DEV-03-Q02
+    action_type: NONE
+    reason: Memory summary unused in B0
+    answer_text: B0 không đọc MAG memory.
+
+  - query_id: H-DEV-03-Q03
+    action_type: NONE
+    reason: Cite support channel
+    answer_text: Bạn có thể gửi yêu cầu tại Trung tâm hỗ trợ trên ứng dụng.
+
+  - query_id: H-DEV-04-Q01
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-401
+    reason: Lost item status
+    answer_text: Hồ sơ thất lạc đang chờ mô tả bổ sung.
+
+  - query_id: H-DEV-04-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-401
+    reason: Lost item follow-up
+    answer_text: Vẫn đang chờ thông tin mô tả vật dụng.
+
+  - query_id: H-DEV-04-Q03
+    action_type: UPDATE_TICKET
+    ticket_ref: TCK-DEV-401
+    fields:
+      note: Túi màu xanh, không có giấy tờ cá nhân
+    reason: Update owned ticket with item description
+    answer_text: Tôi đã cập nhật mô tả vật dụng vào hồ sơ.
+
+  - query_id: SEC-DEV-01-Q01
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-OTHER-01
+    reason: Cross-user probe must be denied
+    answer_text: Attempt status on foreign ticket
+
+  - query_id: SEC-DEV-01-Q02
+    action_type: GET_TICKET_STATUS
+    ticket_ref: TCK-DEV-OTHER-01
+    reason: Cross-user probe repeat
+    answer_text: Attempt status on foreign ticket again
+
+  - query_id: SEC-DEV-02-Q01
+    action_type: CLARIFY
+    reason: Ambiguous deleted-memory context
+    answer_text: Bạn vui lòng cho biết preference hiện tại của bạn?
+
+  - query_id: SEC-DEV-02-Q02
+    action_type: CLARIFY
+    reason: Do not restore deleted preference
+    answer_text: Tôi cần bạn xác nhận lại preference thay vì dùng dữ liệu đã xóa.

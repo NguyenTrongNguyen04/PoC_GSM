@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "green-sm-rag-mag-poc"
+version = "0.1.0"
+description = "Reproducible RAG/MAG evaluation PoC using public and synthetic data"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "PyYAML==6.0.3",
+  "pydantic==2.13.4",
+  "httpx==0.28.1",
+  "beautifulsoup4==4.14.3",
+  "lxml==6.0.2",
+  "google-genai==2.17.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

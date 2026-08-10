@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-HELP-PROMO-401",
+  "title": "FAQ 4.1–4.4 — Mã khuyến mại",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:4.1-4.4",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:28+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "eea00ef2382a561b2b37cfc4512824093dedfc7758fd5deb42cb0346439d278d",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "4.1. Sử dụng mã khuyến mãi và ưu đãi giảm giá\nĐể dùng mã khuyến mãi/ưu đãi giảm giá:\n1/ Tại màn hình đặt xe, nhập Điểm đón và Điểm đến.\n2/ Chọn dịch vụ di chuyển.\n3/ Nhấn “Ưu đãi” trên nút “Đặt xe”, nhập mã.\n4/ Kiểm tra cước phí sau giảm và chọn thanh toán.\n5/ Bấm “Đặt xe” và bắt đầu chuyến đi cùng Green SM.\n* Xem các chương trình ưu đãi độc quyền khác tại biểu tượng Thông báo hoặc dưới trang chính trên ứng dụng.\n4.2. Tôi quên nhập mã khuyến mãi\nGreen SM rất tiếc khi bạn quên nhập mã khuyến mãi trước khi đặt dịch vụ. Hiện tại, chúng tôi chưa thể áp dụng mã sau khi đặt xe. Hãy sử dụng mã cho lần đặt tiếp theo và hãy kiểm tra thông tin cẩn thận trước khi đặt dịch vụ.\n4.3. Hướng dẫn kiểm tra hạng thành viên và đổi điểm Xanh\n1/ Để kiểm tra hạng thành viên:\nBước 1: Chọn “Tài khoản” trên màn hình chính.\nBước 2: Nhấn vào “Hạng thành viên” để xem thông tin chi tiết về hạng, điểm tích lũy, điểm cần thiết để nâng hạng và các đặc quyền tương ứng.\n2/ Để quy đổi điểm VPoint thành mã ưu đãi:\nBước 1: Tại màn hình đặt xe, nhập Điểm đón và Điểm đến.\nBước 2: Chọn dịch vụ di chuyển.\nBước 3: Nhấn “Ưu đãi” trên nút “Đặt xe” và chọn “VPoint”.\nBước 4: Chọn giá trị giảm giá muốn quy đổi và nhấn “Dùng ngay”.\nBước 5: Xem cước phí sau khi giảm giá và xác nhận thanh toán.\nBước 6: Nhấn “Đặt xe” để bắt đầu di chuyển cùng Green SM.\n4.4. Tôi không sử dụng được mã khuyến mãi/mã ưu đãi\nHãy kiểm tra kỹ thông báo lỗi sau khi nhập mã khuyến mãi. Truy cập mục “Ưu đãi” để xem:\n– Thời hạn sử dụng;\n– Thời gian áp dụng trong ngày (nếu có);\n– Loại dịch vụ áp dụng (ví dụ mã chỉ áp dụng cho dịch vụ Giao hàng);\n– Địa chỉ điểm đón/điểm đến;\n– Giá trị tối thiểu của đơn hàng;\n– Số lượt sử dụng cho mỗi khách hàng;\n– Số lượng giới hạn;\n– Phương thức thanh toán áp dụng;\n– Các điều kiện khác.\nLưu ý:\n– Một số mã khuyến mãi chỉ áp dụng cho tài khoản được thông báo trong ứng dụng.\n– Nếu bạn đủ điều kiện nhưng vẫn gặp lỗi, hãy gửi yêu cầu tại mục \"Trung tâm hỗ trợ\" dòng \"Thông Tin Tài Khoản Và Ứng Dụng\" và cung cấp hình ảnh thông tin chi tiết lỗi (nếu có) để được hỗ trợ.",
+  "char_count": 2050,
+  "topic_tags": [
+    "promotion"
+  ],
+  "priority": "high",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": [
+    "4.1",
+    "4.2",
+    "4.3",
+    "4.4"
+  ]
+}

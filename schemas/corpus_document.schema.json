@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/corpus_document.schema.json",
+  "title": "Corpus Snapshot Document v0.2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "source_id",
+    "title",
+    "canonical_url",
+    "requested_url",
+    "final_url",
+    "content_selector",
+    "fetched_at",
+    "http_status",
+    "content_type",
+    "raw_sha256",
+    "content_sha256",
+    "extraction_strategy",
+    "parser_version",
+    "normalizer_version",
+    "materializer_version",
+    "materialization_mode",
+    "materialization_payload_sha256",
+    "normalized_text",
+    "retrieval_role"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "source_id": { "type": "string" },
+    "title": { "type": "string" },
+    "canonical_url": { "type": "string", "format": "uri" },
+    "requested_url": { "type": "string", "format": "uri" },
+    "final_url": { "type": "string", "format": "uri" },
+    "content_selector": { "type": "string" },
+    "language": { "type": "string" },
+    "publisher": { "type": "string" },
+    "fetched_at": { "type": "string" },
+    "http_status": { "type": "integer" },
+    "content_type": { "type": "string" },
+    "raw_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "extraction_strategy": {
+      "enum": ["dom_semantic", "line_fallback"]
+    },
+    "source_last_modified": {
+      "type": ["string", "null"]
+    },
+    "parser_version": { "type": "string" },
+    "normalizer_version": { "type": "string" },
+    "materializer_version": { "type": "string" },
+    "materialization_mode": { "type": "string", "minLength": 1 },
+    "materialization_payload_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "content_kind": { "enum": ["text", "image_only"] },
+    "ocr_status": { "type": ["string", "null"] },
+    "text_retrieval_eligible": { "type": "boolean" },
+    "asset_urls": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "normalized_text": { "type": "string", "minLength": 1 },
+    "char_count": { "type": "integer", "minimum": 1 },
+    "topic_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "priority": { "type": "string" },
+    "retrieval_role": {
+      "enum": ["standalone", "parent_context", "retrievable_child"]
+    },
+    "parent_source_id": {
+      "type": ["string", "null"]
+    },
+    "faq_range": {
+      "type": ["array", "null"],
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

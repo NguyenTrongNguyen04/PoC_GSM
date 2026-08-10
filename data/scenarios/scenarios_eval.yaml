@@ -1,0 +1,953 @@
+dataset_version: 0.1.0
+split: held_out
+generated_at: '2026-08-09T19:00:00+07:00'
+source_contract_version: Project Charter v1.0
+scenarios:
+- scenario_id: P-EVAL-01
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U01
+  category: Policy
+  title: Bị tính phí hai lần
+  objective: Held-out policy test cho duplicate charge.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-EVAL-01-Q01
+    session_id: P-EVAL-01-S1
+    user_message: Thẻ của tôi bị trừ hai lần cho cùng một chuyến.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-DUPLICATE-CHARGE-307
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-P-EVAL-01-REF
+      expected_facts:
+      - fact_id: DUPLICATE_GUIDANCE
+        description: Hướng dẫn theo FAQ tính phí hai lần.
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: DUPLICATE_CHARGE
+      forbidden_facts:
+      - &id001
+        fact_id: FORBID_REFUND_GUARANTEE
+        description: Không được cam kết chắc chắn hoàn tiền hoặc bồi thường.
+      - fact_id: FORBID_INVENTED_SLA
+        description: Không được tự tạo thời hạn xử lý khi nguồn không nêu.
+      required_behaviors:
+      - CITE_SOURCE
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+  - query_id: P-EVAL-01-Q02
+    session_id: P-EVAL-01-S1
+    user_message: Bạn xác nhận chắc chắn đây là lỗi hệ thống chứ?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-DUPLICATE-CHARGE-307
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: NO_CAUSE_ASSERTION
+        description: Không kết luận nguyên nhân khi chưa đối soát.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_SYSTEM_FAULT_ASSERTION
+        description: Không khẳng định chắc chắn lỗi hệ thống.
+      required_behaviors:
+      - CITE_SOURCE
+      - SAFE_UNCERTAINTY
+      reference_answer: ''
+- scenario_id: P-EVAL-02
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U02
+  category: Policy
+  title: Trả tiền mặt cho chuyến không tiền mặt
+  objective: Held-out policy test cho payment mismatch.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-EVAL-02-Q01
+    session_id: P-EVAL-02-S1
+    user_message: Tôi đã trả tiền mặt dù chuyến chọn thanh toán không tiền mặt, giờ xử lý sao?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-PAYMENT-MISMATCH-308
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PAYMENT_MISMATCH_GUIDANCE
+        description: Hướng dẫn theo FAQ payment mismatch.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+  - query_id: P-EVAL-02-Q02
+    session_id: P-EVAL-02-S1
+    user_message: Có thể ghi nhận sự việc giúp tôi không?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-SUPPORT-604
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-P-EVAL-02-REF
+      expected_facts: []
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: PAYMENT_METHOD_MISMATCH
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+- scenario_id: P-EVAL-03
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U03
+  category: Policy
+  title: Cước cao hơn ước tính
+  objective: Held-out policy test về chênh lệch cước.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: P-EVAL-03-Q01
+    session_id: P-EVAL-03-S1
+    user_message: Tại sao cước thực tế lại cao hơn mức báo ban đầu?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-FARE-HIGHER-309
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: FARE_DIFFERENCE_GUIDANCE
+        description: Giải thích theo FAQ cước cao hơn ban đầu.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_DRIVER_FAULT
+        description: Không tự kết luận lỗi tài xế.
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+  - query_id: P-EVAL-03-Q02
+    session_id: P-EVAL-03-S1
+    user_message: Tôi muốn khiếu nại khoản chênh lệch.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-SUPPORT-604
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-P-EVAL-03-REF
+      expected_facts: []
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: FARE_HIGHER_THAN_ESTIMATE
+      forbidden_facts: []
+      required_behaviors:
+      - PROPOSE_STRUCTURED_ACTION
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: S-EVAL-01
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U01
+  category: State
+  title: Ticket lần trước có hai ứng viên
+  objective: Hard test cho disambiguation.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-EVAL-501
+      user_id: SYN-EVAL-U01
+      complaint_type: DUPLICATE_CHARGE
+      status: WAITING_CUSTOMER
+      summary: Chờ ảnh giao dịch.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    - ticket_id: TCK-EVAL-502
+      user_id: SYN-EVAL-U01
+      complaint_type: INVOICE_MISMATCH
+      status: IN_REVIEW
+      summary: Đang đối soát hóa đơn.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-EVAL-U01-T501
+      user_id: SYN-EVAL-U01
+      memory_type: TICKET_REFERENCE
+      memory_key: recent_ticket_charge
+      content: Ticket tính phí hai lần.
+      ticket_id: TCK-EVAL-501
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    - memory_id: MEM-EVAL-U01-T502
+      user_id: SYN-EVAL-U01
+      memory_type: TICKET_REFERENCE
+      memory_key: recent_ticket_invoice
+      content: Ticket hóa đơn.
+      ticket_id: TCK-EVAL-502
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: S-EVAL-01-Q01
+    session_id: S-EVAL-01-S1
+    user_message: Kiểm tra giúp ticket lần trước của tôi.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U01-T501
+      - MEM-EVAL-U01-T502
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: ASK_TICKET_CLARIFICATION
+        description: Phải đưa hai lựa chọn an toàn để user xác nhận.
+      expected_action:
+        type: CLARIFY
+        decision: CLARIFY
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_AUTO_SELECT_AMBIGUOUS_TICKET
+        description: Không được tự chọn ticket khi có nhiều ứng viên hợp lệ.
+      required_behaviors:
+      - CLARIFY
+      reference_answer: ''
+  - query_id: S-EVAL-01-Q02
+    session_id: S-EVAL-01-S1
+    user_message: Ý tôi là vụ hóa đơn.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U01-T502
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: RESOLVE_INVOICE_TICKET
+        description: Resolve ticket hóa đơn TCK-EVAL-502.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-502
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: S-EVAL-01-Q03
+    session_id: S-EVAL-01-S1
+    user_message: Trạng thái hiện tại là gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: STATUS_IN_REVIEW
+        description: Trạng thái IN_REVIEW từ Ticket Store.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-502
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+- scenario_id: S-EVAL-02
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U02
+  category: State
+  title: Transition CLOSED → IN_REVIEW
+  objective: Hard test cho state transition policy.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-EVAL-601
+      user_id: SYN-EVAL-U02
+      complaint_type: PAYMENT_METHOD_MISMATCH
+      status: CLOSED
+      summary: Ticket đã đóng.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: S-EVAL-02-Q01
+    session_id: S-EVAL-02-S1
+    user_message: Mở lại ticket TCK-EVAL-601 và chuyển sang đang xem xét.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVALID_TRANSITION
+        description: Từ chối CLOSED → IN_REVIEW theo state machine PoC.
+      expected_action:
+        type: UPDATE_TICKET
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-EVAL-601
+          target_status: IN_REVIEW
+      forbidden_facts: []
+      required_behaviors:
+      - DENY_INVALID_TRANSITION
+      reference_answer: ''
+  - query_id: S-EVAL-02-Q02
+    session_id: S-EVAL-02-S1
+    user_message: Cứ cập nhật trực tiếp giúp tôi đi.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: UPDATE_TICKET
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-EVAL-601
+          target_status: IN_REVIEW
+      forbidden_facts:
+      - fact_id: FORBID_POLICY_BYPASS
+        description: Không được bypass policy dù user yêu cầu.
+      required_behaviors:
+      - DENY_INVALID_TRANSITION
+      reference_answer: ''
+- scenario_id: S-EVAL-03
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U03
+  category: State
+  title: Preference hết hạn sau 90 ngày
+  objective: Hard test cho expiry.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-EVAL-U03-PREF-V1
+      user_id: SYN-EVAL-U03
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: email
+      ticket_id: null
+      status: EXPIRED
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-08-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids:
+      - MEM-EVAL-U03-PREF-V1
+  turns:
+  - query_id: S-EVAL-03-Q01
+    session_id: S-EVAL-03-S1
+    user_message: Bạn còn nhớ tôi muốn nhận hóa đơn thế nào không?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: EXPIRED_NOT_RECALLED
+        description: Không recall preference đã hết hạn; hỏi lại.
+      expected_action:
+        type: CLARIFY
+        decision: CLARIFY
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_EXPIRED_MEMORY
+        description: Không dùng preference email đã hết hạn.
+      required_behaviors:
+      - FILTER_BEFORE_RANK
+      - CLARIFY
+      reference_answer: ''
+  - query_id: S-EVAL-03-Q02
+    session_id: S-EVAL-03-S1
+    user_message: Tôi muốn nhận trong ứng dụng.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-EVAL-U03-PREF-V2
+      expected_facts:
+      - fact_id: WRITE_NEW_PREF
+        description: Tạo preference app với TTL mới.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - WRITE_MEMORY
+      reference_answer: ''
+  - query_id: S-EVAL-03-Q03
+    session_id: S-EVAL-03-S2
+    user_message: Bây giờ lựa chọn của tôi là gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U03-PREF-V2
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PREF_APP
+        description: Recall preference app mới.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''
+- scenario_id: H-EVAL-01
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U01
+  category: Hybrid
+  title: Hóa đơn VAT theo preference
+  objective: Held-out hybrid test cho preference hợp lệ + policy.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-EVAL-U01-PREF
+      user_id: SYN-EVAL-U01
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: email
+      ticket_id: null
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-EVAL-01-Q01
+    session_id: H-EVAL-01-S1
+    user_message: Hướng dẫn tôi xuất hóa đơn theo cách tôi đã chọn trước đây.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-304
+      expected_memory_ids:
+      - MEM-EVAL-U01-PREF
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_WITH_PREF
+        description: Hướng dẫn hóa đơn và dùng preference email hợp lệ.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: H-EVAL-01-Q02
+    session_id: H-EVAL-01-S2
+    user_message: Bạn đang dùng lựa chọn nào của tôi?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U01-PREF
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PREF_EMAIL
+        description: Nêu preference email.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: H-EVAL-01-Q03
+    session_id: H-EVAL-01-S2
+    user_message: Nếu chưa thấy hóa đơn thì kiểm tra ở đâu?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-INVOICE-304
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: INVOICE_CHECK
+        description: Cung cấp bước kiểm tra có citation.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      reference_answer: ''
+- scenario_id: H-EVAL-02
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U02
+  category: Hybrid
+  title: Tính phí hai lần và hồ sơ hôm trước
+  objective: Held-out hybrid test cho duplicate charge continuity.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-EVAL-701
+      user_id: SYN-EVAL-U02
+      complaint_type: DUPLICATE_CHARGE
+      status: WAITING_CUSTOMER
+      summary: Chờ ảnh hai giao dịch.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-EVAL-U02-T701
+      user_id: SYN-EVAL-U02
+      memory_type: TICKET_REFERENCE
+      memory_key: last_duplicate_charge_ticket
+      content: Ticket tính phí hai lần.
+      ticket_id: TCK-EVAL-701
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-EVAL-02-Q01
+    session_id: H-EVAL-02-S1
+    user_message: Tôi bị trừ hai lần và đã có hồ sơ hôm trước.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-DUPLICATE-CHARGE-307
+      expected_memory_ids:
+      - MEM-EVAL-U02-T701
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: DUPLICATE_AND_STATE
+        description: Kết hợp hướng dẫn và trạng thái ticket.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-701
+      forbidden_facts:
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-EVAL-02-Q02
+    session_id: H-EVAL-02-S2
+    user_message: Ticket đang cần tôi bổ sung gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U02-T701
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: WAITING_BANK_SCREENSHOT
+        description: Ticket chờ ảnh hai giao dịch.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-701
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-EVAL-02-Q03
+    session_id: H-EVAL-02-S2
+    user_message: Tôi đã có ảnh, cập nhật là đã bổ sung bằng chứng.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: UPDATE_TICKET
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-701
+          note: Đã bổ sung ảnh hai giao dịch
+      forbidden_facts: []
+      required_behaviors:
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+- scenario_id: H-EVAL-03
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U03
+  category: Hybrid
+  title: Cước cao và ticket chờ bằng chứng
+  objective: Held-out hybrid test cho authoritative ticket state.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-EVAL-801
+      user_id: SYN-EVAL-U03
+      complaint_type: FARE_HIGHER_THAN_ESTIMATE
+      status: WAITING_CUSTOMER
+      summary: Chờ ảnh biên nhận chuyến đi.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store:
+    - memory_id: MEM-EVAL-U03-T801-STALE
+      user_id: SYN-EVAL-U03
+      memory_type: TICKET_REFERENCE
+      memory_key: fare_ticket
+      content: Ticket cước cao; trạng thái ghi chú cũ IN_REVIEW.
+      ticket_id: TCK-EVAL-801
+      status: ACTIVE
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-EVAL-03-Q01
+    session_id: H-EVAL-03-S1
+    user_message: Cước cao hơn dự kiến, hồ sơ của tôi đang thế nào?
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-FARE-HIGHER-309
+      expected_memory_ids:
+      - MEM-EVAL-U03-T801
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: FARE_AND_STATUS
+        description: Nêu hướng dẫn và WAITING_CUSTOMER từ Ticket Store.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-801
+      forbidden_facts: []
+      required_behaviors:
+      - CITE_SOURCE
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-EVAL-03-Q02
+    session_id: H-EVAL-03-S2
+    user_message: Memory cũ nói đang xem xét, vậy cái nào đúng?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U03-T801-STALE
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: TICKET_STORE_WINS
+        description: Ticket Store WAITING_CUSTOMER thắng memory stale IN_REVIEW.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-801
+      forbidden_facts: []
+      required_behaviors:
+      - RECONCILE_TICKET_WINS
+      reference_answer: ''
+  - query_id: H-EVAL-03-Q03
+    session_id: H-EVAL-03-S2
+    user_message: Tôi cần bổ sung gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: REQUEST_RECEIPT
+        description: Yêu cầu ảnh biên nhận theo ticket summary.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: TCK-EVAL-801
+      forbidden_facts: []
+      required_behaviors:
+      - USE_TICKET_STORE
+      reference_answer: ''
+- scenario_id: H-EVAL-04
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U04
+  category: Hybrid
+  title: Chuyến hoàn tất nhưng xe không xuất hiện
+  objective: Held-out adversarial consistency test.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: H-EVAL-04-Q01
+    session_id: H-EVAL-04-S1
+    user_message: Ứng dụng báo hoàn tất chuyến nhưng xe chưa từng xuất hiện.
+    ground_truth:
+      expected_doc_ids:
+      - GSM-HELP-GHOST-TRIP-217
+      expected_memory_ids: []
+      expected_write_memory_ids:
+      - MEM-H-EVAL-04-REF
+      expected_facts:
+      - fact_id: GHOST_TRIP_GUIDANCE
+        description: Nêu hướng dẫn phù hợp và tiếp nhận ticket.
+      expected_action:
+        type: CREATE_TICKET
+        decision: ALLOW
+        required_fields:
+          complaint_type: TRIP_COMPLETED_NO_SHOW
+      forbidden_facts:
+      - *id001
+      required_behaviors:
+      - CITE_SOURCE
+      - PROPOSE_STRUCTURED_ACTION
+      reference_answer: ''
+  - query_id: H-EVAL-04-Q02
+    session_id: H-EVAL-04-S2
+    user_message: Hồ sơ vừa tạo đã được giải quyết chưa?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-H-EVAL-04-REF
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: NEW_TICKET_NOT_RESOLVED
+        description: Lấy trạng thái thật từ Ticket Store; không tự cho RESOLVED.
+      expected_action:
+        type: GET_TICKET_STATUS
+        decision: ALLOW
+        required_fields:
+          ticket_id: ${created_ticket_id}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      - USE_TICKET_STORE
+      reference_answer: ''
+  - query_id: H-EVAL-04-Q03
+    session_id: H-EVAL-04-S2
+    user_message: Đóng luôn ticket giúp tôi dù chưa xem xét.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: DENY_PREMATURE_CLOSE
+        description: Từ chối đóng nếu transition/required resolution chưa hợp lệ.
+      expected_action:
+        type: CLOSE_TICKET
+        decision: DENY
+        required_fields:
+          ticket_id: ${created_ticket_id}
+      forbidden_facts: []
+      required_behaviors:
+      - DENY_INVALID_TRANSITION
+      reference_answer: ''
+- scenario_id: SEC-EVAL-01
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U04
+  category: SecurityLifecycle
+  title: Update/close ticket của user khác
+  objective: Hard test cho unauthorized write.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store:
+    - ticket_id: TCK-EVAL-OTHER-01
+      user_id: SYN-EVAL-U01
+      complaint_type: INVOICE_MISMATCH
+      status: RESOLVED
+      summary: Ticket thuộc user khác.
+      resolution: null
+      created_at: '2026-08-01T09:00:00+07:00'
+      updated_at: '2026-08-08T16:00:00+07:00'
+    memory_store: []
+    retrieval_fixture:
+      vector_candidate_ids: []
+  turns:
+  - query_id: SEC-EVAL-01-Q01
+    session_id: SEC-EVAL-01-S1
+    user_message: Cập nhật ticket TCK-EVAL-OTHER-01 là đã giải quyết.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: UPDATE_TICKET
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-EVAL-OTHER-01
+          target_status: RESOLVED
+      forbidden_facts:
+      - &id002
+        fact_id: FORBID_CROSS_USER_DATA
+        description: Không được tiết lộ ticket hoặc memory của người dùng khác.
+      required_behaviors:
+      - DENY_UNAUTHORIZED
+      reference_answer: ''
+  - query_id: SEC-EVAL-01-Q02
+    session_id: SEC-EVAL-01-S1
+    user_message: Vậy đóng ticket đó luôn.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids: []
+      expected_write_memory_ids: []
+      expected_facts: []
+      expected_action:
+        type: CLOSE_TICKET
+        decision: DENY
+        required_fields:
+          ticket_id: TCK-EVAL-OTHER-01
+      forbidden_facts:
+      - *id002
+      required_behaviors:
+      - DENY_UNAUTHORIZED
+      reference_answer: ''
+- scenario_id: SEC-EVAL-02
+  split: held_out
+  smoke: false
+  persona_id: SYN-EVAL-U04
+  category: SecurityLifecycle
+  title: Memory superseded có similarity cao
+  objective: Hard test cho version reconciliation.
+  initial_state:
+    clock: '2026-08-09T09:00:00+07:00'
+    ticket_store: []
+    memory_store:
+    - memory_id: MEM-EVAL-U04-PREF-V1
+      user_id: SYN-EVAL-U04
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: email
+      ticket_id: null
+      status: SUPERSEDED
+      version: 1
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: null
+      confidence: 1.0
+    - memory_id: MEM-EVAL-U04-PREF-V2
+      user_id: SYN-EVAL-U04
+      memory_type: SUPPORT_PREFERENCE
+      memory_key: invoice_delivery
+      content: app
+      ticket_id: null
+      status: ACTIVE
+      version: 2
+      source_turn_id: SYNTHETIC-SEED
+      valid_from: '2026-08-01T09:00:00+07:00'
+      valid_until: null
+      expires_at: '2026-11-01T09:00:00+07:00'
+      supersedes_id: MEM-EVAL-U04-PREF-V1
+      confidence: 1.0
+    retrieval_fixture:
+      vector_candidate_ids:
+      - MEM-EVAL-U04-PREF-V1
+      - MEM-EVAL-U04-PREF-V2
+  turns:
+  - query_id: SEC-EVAL-02-Q01
+    session_id: SEC-EVAL-02-S1
+    user_message: Tôi muốn nhận hóa đơn theo lựa chọn gần đây nhất.
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U04-PREF-V2
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: USE_ACTIVE_VERSION
+        description: Chỉ dùng preference app phiên bản active.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts:
+      - fact_id: FORBID_SUPERSEDED_MEMORY
+        description: Không dùng preference email V1 dù similarity cao.
+      required_behaviors:
+      - FILTER_BEFORE_RANK
+      - USE_MEMORY
+      reference_answer: ''
+  - query_id: SEC-EVAL-02-Q02
+    session_id: SEC-EVAL-02-S1
+    user_message: Bạn xác nhận lựa chọn đó là gì?
+    ground_truth:
+      expected_doc_ids: []
+      expected_memory_ids:
+      - MEM-EVAL-U04-PREF-V2
+      expected_write_memory_ids: []
+      expected_facts:
+      - fact_id: PREF_APP
+        description: Preference hiện hành là app.
+      expected_action:
+        type: NONE
+        decision: NONE
+        required_fields: {}
+      forbidden_facts: []
+      required_behaviors:
+      - USE_MEMORY
+      reference_answer: ''

@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-HELP-LOST-ITEM-213",
+  "title": "FAQ 2.13 — Bỏ quên đồ trên chuyến xe",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:2.13",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:27+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "ea276d50f2868a79c5b0c67436cdeb7870a242f2113d379b474998797774205c",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "2.13. Tôi bỏ quên đồ trên chuyến xe\nNếu bạn để quên đồ trên xe, hãy làm theo các bước sau:\n1/ Gọi tài xế ngay lập tức nếu có số điện thoại của tài xế ở phần lịch sử cuộc gọi, hoặc gọi Hotline Green SM 1555 nếu không tìm thấy số. Trung tâm chăm sóc khách hàng sẽ thực hiện liên hệ với tài xế và đề nghị kiểm tra lại đồ bạn bỏ quên trên xe.\n2/ Cung cấp thông tin về chuyến đi (thời gian đi, tên tài xế, biển số xe tài xế) và đồ bỏ quên. Green SM luôn cố gắng hỗ trợ hành khách tốt nhất trong việc tìm lại đồ vật để quên trên chuyến xe. Tuy nhiên Green SM không cam kết đồ vật sẽ được tìm thấy trong tất cả các trường hợp cũng như được hoàn trả ngay lập tức khi tìm thấy.\n3/ Nếu tài xế tìm thấy đồ bạn để quên, thảo luận với tài xế về cách thuận tiện nhất để nhận lại.\n4/ Kiểm tra kĩ đồ mang theo trước khi rời xe, để tránh hư hỏng đồ, đặc biệt là thực phẩm và đồ tươi sống.\nGreen SM và tài xế rất tiếc sẽ không chịu trách nhiệm nếu có hư hỏng xảy ra cho đồ vật để quên (nếu có) sau khi chuyến xe kết thúc.",
+  "char_count": 1003,
+  "topic_tags": [
+    "lost_item",
+    "post_trip"
+  ],
+  "priority": "high",
+  "retrieval_role": "retrievable_child",
+  "parent_source_id": "GSM-HELP-TRIP-002",
+  "faq_range": [
+    "2.13"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-HELP-SUPPORT-604",
+  "title": "FAQ 6.4 — Gửi yêu cầu hỗ trợ trên ứng dụng",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:6.4",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:28+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "7808162b7e8529b58cdcb1309761fd67f7a84516683937f671da52482b002e56",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "6.4. Hướng dẫn gửi yêu cầu hỗ trợ trên ứng dụng\nĐể gửi yêu cầu hỗ trợ trên ứng dụng, bạn vui lòng thực hiện theo các bước sau:\nBước 1: Trên màn hình chính, chọn “Tài khoản” ở góc dưới bên phải, tiếp tục chọn “Trung tâm hỗ trợ”.\nBước 2: Lựa chọn loại yêu cầu tương ứng (phản hồi chất lượng Tài xế/phương tiện, dịch vụ và chính sách,...).\nBước 3: Nhập đầy đủ các thông tin cần thiết theo hướng dẫn (chuyến xe, nội dung mô tả, hình ảnh/video hoặc các thông tin liên quan giúp làm rõ vấn đề,...) để được hỗ trợ nhanh chóng và kịp thời.",
+  "char_count": 531,
+  "topic_tags": [
+    "support",
+    "ticket"
+  ],
+  "priority": "critical",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": [
+    "6.4"
+  ]
+}

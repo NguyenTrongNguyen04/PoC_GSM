@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-HELP-INVOICE-DIFF-305",
+  "title": "FAQ 3.5 — Chênh lệch ứng dụng và hóa đơn",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:3.5",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:27+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "618ea91f5562376f283ce40a01897859044d4c95a809058a91b6ed15228e2634",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "3.5. Vì sao số tiền trên ứng dụng và trên hóa đơn giá trị gia tăng (VAT) lại khác nhau?\nCước phí hiển thị trên hóa đơn giá trị gia tăng (VAT) sẽ không bao gồm các loại phí sau (nếu có):\n– Phí cầu đường, bến bãi, sân bay, đỗ xe,…\n– Phí bảo hiểm chuyến đi Green SM Care.\nNếu thấy số tiền trên ứng dụng hoặc trên hóa đơn VAT sau khi trừ các loại phí này vẫn không trùng khớp, hãy gửi yêu cầu tại mục \" Trung tâm hỗ trợ \" để được kiểm tra và giải đáp kịp thời.",
+  "char_count": 456,
+  "topic_tags": [
+    "invoice",
+    "fare"
+  ],
+  "priority": "critical",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": [
+    "3.5"
+  ]
+}

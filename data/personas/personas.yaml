@@ -1,0 +1,100 @@
+dataset_version: 0.1.0
+generated_at: '2026-08-09T19:00:00+07:00'
+is_fully_synthetic: true
+personas:
+- persona_id: SYN-DEV-U01
+  split: development
+  display_label: Persona Dev A — Lan
+  language: vi
+  support_style: ngắn gọn, ưu tiên hướng dẫn từng bước
+  non_sensitive_preferences:
+    invoice_delivery: email
+    answer_tone: concise
+  scenario_ids:
+  - P-DEV-01
+  - S-DEV-01
+  - H-DEV-01
+- persona_id: SYN-DEV-U02
+  split: development
+  display_label: Persona Dev B — Minh
+  language: vi
+  support_style: muốn biết trạng thái và bước tiếp theo
+  non_sensitive_preferences:
+    invoice_delivery: app
+    answer_tone: neutral
+  scenario_ids:
+  - P-DEV-02
+  - S-DEV-02
+  - H-DEV-02
+- persona_id: SYN-DEV-U03
+  split: development
+  display_label: Persona Dev C — Thảo
+  language: vi
+  support_style: hỏi theo ngôn ngữ đời thường, đôi khi thiếu ticket_id
+  non_sensitive_preferences:
+    invoice_delivery: email
+    answer_tone: friendly
+  scenario_ids:
+  - P-DEV-03
+  - S-DEV-03
+  - H-DEV-03
+- persona_id: SYN-DEV-U04
+  split: development
+  display_label: Persona Dev D — Nam
+  language: vi
+  support_style: tập trung xử lý sự cố sau chuyến
+  non_sensitive_preferences:
+    invoice_delivery: app
+    answer_tone: concise
+  scenario_ids:
+  - H-DEV-04
+  - SEC-DEV-01
+  - SEC-DEV-02
+- persona_id: SYN-EVAL-U01
+  split: held_out
+  display_label: Persona Eval A — Mai
+  language: vi
+  support_style: đặt câu hỏi ngắn và mơ hồ
+  non_sensitive_preferences:
+    invoice_delivery: email
+    answer_tone: neutral
+  scenario_ids:
+  - P-EVAL-01
+  - S-EVAL-01
+  - H-EVAL-01
+- persona_id: SYN-EVAL-U02
+  split: held_out
+  display_label: Persona Eval B — Quân
+  language: vi
+  support_style: ưu tiên phản hồi trực tiếp và rõ quyết định
+  non_sensitive_preferences:
+    invoice_delivery: app
+    answer_tone: concise
+  scenario_ids:
+  - P-EVAL-02
+  - S-EVAL-02
+  - H-EVAL-02
+- persona_id: SYN-EVAL-U03
+  split: held_out
+  display_label: Persona Eval C — Yến
+  language: vi
+  support_style: cần giải thích nguyên nhân và bước tiếp theo
+  non_sensitive_preferences:
+    invoice_delivery: email
+    answer_tone: friendly
+  scenario_ids:
+  - P-EVAL-03
+  - S-EVAL-03
+  - H-EVAL-03
+- persona_id: SYN-EVAL-U04
+  split: held_out
+  display_label: Persona Eval D — Sơn
+  language: vi
+  support_style: mô tả sự cố không theo cấu trúc
+  non_sensitive_preferences:
+    invoice_delivery: app
+    answer_tone: neutral
+  scenario_ids:
+  - H-EVAL-04
+  - SEC-EVAL-01
+  - SEC-EVAL-02

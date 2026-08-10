@@ -1,0 +1,46 @@
+contract_version: 0.2.0
+parser_version: 0.2.0
+normalizer_version: 0.1.0
+materializer_version: 0.2.0
+pass: B.1
+publish_enabled: false
+live_fetch_enabled: false
+fetch:
+  allowed_hosts:
+  - www.greensm.com
+  require_https: true
+  timeout_connect_seconds: 10
+  timeout_read_seconds: 45
+  max_retries: 3
+  backoff_seconds:
+  - 1
+  - 2
+  - 4
+  max_response_bytes: 5000000
+  max_redirects: 5
+  inter_url_delay_seconds: 0.75
+  user_agent: green-sm-rag-mag-poc/0.2.0 (+research; pass-b1-governance)
+  honor_retry_after: true
+  follow_redirects_automatic: false
+paths:
+  manifest: data/corpus/corpus_manifest.csv
+  snapshots_dir: data/corpus/snapshots/by_source
+  raw_cache_dir: data/corpus/snapshots/raw_cache
+  fact_catalog: data/corpus/knowledge/fact_catalog.yaml
+  fact_catalog_fixture: data/corpus/knowledge/fact_catalog_fixture.yaml
+  corpus_contract: data/corpus/corpus_contract.yaml
+  offline_artifact_dir: artifacts/offline_staging
+  live_artifact_dir: artifacts/live_staging
+  publish_backup_dir: artifacts/publish_backup
+retrieval_roles:
+  GSM-HELP-TRIP-002:
+    retrieval_role: parent_context
+    parent_source_id: null
+  GSM-HELP-LOST-ITEM-213:
+    retrieval_role: retrievable_child
+    parent_source_id: GSM-HELP-TRIP-002
+  GSM-HELP-GHOST-TRIP-217:
+    retrieval_role: retrievable_child
+    parent_source_id: GSM-HELP-TRIP-002
+idempotency:
+  keep_fetched_at_on_cache_hit: true

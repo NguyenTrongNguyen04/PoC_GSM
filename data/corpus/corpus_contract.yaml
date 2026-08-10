@@ -1,0 +1,24 @@
+# Immutable corpus retrieval-unit contract (Pass B.1).
+# Expected source_id set MUST be loaded from this file — never from the
+# production manifest under validation.
+contract_version: "0.2.0"
+retrieval_unit_count: 18
+source_ids:
+  - GSM-HELP-TRIP-002
+  - GSM-HELP-LOST-ITEM-213
+  - GSM-HELP-GHOST-TRIP-217
+  - GSM-HELP-PAYMENT-301
+  - GSM-HELP-FARE-302
+  - GSM-HELP-INVOICE-304
+  - GSM-HELP-INVOICE-DIFF-305
+  - GSM-HELP-CANCELLED-CHARGE-306
+  - GSM-HELP-DUPLICATE-CHARGE-307
+  - GSM-HELP-PAYMENT-MISMATCH-308
+  - GSM-HELP-FARE-HIGHER-309
+  - GSM-HELP-PROMO-401
+  - GSM-HELP-LOYALTY-405
+  - GSM-HELP-SUPPORT-604
+  - GSM-TERMS-GENERAL
+  - GSM-TERMS-OPERATING
+  - GSM-TERMS-PRIVACY
+  - GSM-TERMS-SERVICE

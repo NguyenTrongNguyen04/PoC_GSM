@@ -1,0 +1,8 @@
+{
+  "project": "green-sm-rag-mag-poc",
+  "version": "0.2.1",
+  "generated_at": "2026-08-10T07:30:00+07:00",
+  "charter": "Project Charter & Experimental Contract v1.0",
+  "status": "pass_b1_changes_implemented_awaiting_research_approval",
+  "notes": "Day 2 blocked. Production READY requires Research Lead approve staging provenance + fact review. live_fetch/publish relocked."
+}

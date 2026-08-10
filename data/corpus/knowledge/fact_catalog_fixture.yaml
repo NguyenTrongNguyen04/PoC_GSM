@@ -1,0 +1,445 @@
+catalog_version: 0.1.1
+parser_contract: corpus_snapshot_v0.1
+catalog_role: offline_fixture
+notes: Pass A.1 fixture catalog for offline tests only. NO_GUARANTEE is NEGATIVE_CONSTRAINT.
+facts:
+- fact_id: INVOICE_GUIDANCE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-INVOICE-304
+  claim_type: guidance
+  description: Hướng dẫn phải dựa trên mục FAQ về hóa đơn VAT.
+  evidence_spans:
+  - quote: Để xuất hóa đơn VAT, vào lịch sử chuyến và chọn yêu cầu hóa đơn.
+    start_codepoint: 92
+    end_codepoint: 156
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: INVOICE_CHECK
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-INVOICE-304
+  claim_type: guidance
+  description: Nêu đúng cách kiểm tra hóa đơn theo nguồn.
+  evidence_spans:
+  - quote: Nếu chưa thấy hóa đơn, kiểm tra mục Hóa đơn trong Tài khoản hoặc email
+      đã đăng ký.
+    start_codepoint: 157
+    end_codepoint: 239
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: INVOICE_DIFF_GUIDANCE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-INVOICE-DIFF-305
+  claim_type: guidance
+  description: Giải thích chênh lệch ứng dụng và hóa đơn VAT.
+  evidence_spans:
+  - quote: Số tiền trên ứng dụng và hóa đơn VAT có thể khác nhau do làm tròn thuế
+      hoặc khoản điều chỉnh theo quy định.
+    start_codepoint: 88
+    end_codepoint: 195
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: CANCELLED_CHARGE_GUIDANCE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-CANCELLED-CHARGE-306
+  claim_type: guidance
+  description: Hướng dẫn khi hủy chuyến nhưng vẫn bị trừ tiền.
+  evidence_spans:
+  - quote: Nếu chuyến đã hủy mà thẻ vẫn bị trừ, hãy tạo yêu cầu hỗ trợ để được kiểm
+      tra giao dịch.
+    start_codepoint: 58
+    end_codepoint: 145
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: NO_GUARANTEE
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không cam kết hoàn tiền tức thì.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: refund_or_compensation_commitment
+    path: config/policy.yaml
+    notes: 'Hard gate: no refund guarantee'
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: PROMO_USAGE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-PROMO-401
+  claim_type: guidance
+  description: Cách sử dụng mã khuyến mại.
+  evidence_spans:
+  - quote: Tại màn hình đặt xe, nhấn Ưu đãi, nhập mã rồi kiểm tra cước sau giảm trước
+      khi Đặt xe.
+    start_codepoint: 46
+    end_codepoint: 132
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: PROMO_STEP
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-PROMO-401
+  claim_type: guidance
+  description: Các bước nhập mã ưu đãi.
+  evidence_spans:
+  - quote: Tại màn hình đặt xe, nhấn Ưu đãi, nhập mã rồi kiểm tra cước sau giảm trước
+      khi Đặt xe.
+    start_codepoint: 46
+    end_codepoint: 132
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: LOYALTY_GUIDANCE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-LOYALTY-405
+  claim_type: guidance
+  description: Hướng dẫn khi thiếu điểm Xanh.
+  evidence_spans:
+  - quote: Điểm Xanh có thể được cập nhật sau chuyến hợp lệ
+    start_codepoint: 49
+    end_codepoint: 97
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: SUPPORT_CHANNEL
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-SUPPORT-604
+  claim_type: guidance
+  description: Kênh gửi yêu cầu hỗ trợ trên ứng dụng.
+  evidence_spans:
+  - quote: Chọn Tài khoản, mở Trung tâm hỗ trợ, chọn chủ đề và tạo yêu cầu hỗ trợ
+      trên ứng dụng.
+    start_codepoint: 48
+    end_codepoint: 133
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: CREATE_COMPLAINT
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-SUPPORT-604
+  claim_type: guidance
+  description: Tạo yêu cầu hỗ trợ/khiếu nại qua ứng dụng.
+  evidence_spans:
+  - quote: Chọn Tài khoản, mở Trung tâm hỗ trợ, chọn chủ đề và tạo yêu cầu hỗ trợ
+      trên ứng dụng.
+    start_codepoint: 48
+    end_codepoint: 133
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: LOST_ITEM_GUIDANCE
+  evidence_kind: CORPUS
+  source_id: GSM-HELP-LOST-ITEM-213
+  claim_type: guidance
+  description: Hướng dẫn báo mất đồ.
+  evidence_spans:
+  - quote: Nếu bạn bỏ quên đồ trên chuyến xe, hãy vào lịch sử chuyến và chọn Báo mất
+      đồ
+    start_codepoint: 36
+    end_codepoint: 112
+  structured_evidence_refs: []
+  notes: Offline fixture candidate only; not production evidence
+  evidence_status: candidate
+- fact_id: WAITING_ITEM_DETAIL
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Chờ người dùng bổ sung chi tiết đồ thất lạc.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: WAITING_CUSTOMER
+    path: data/scenarios/scenarios_dev.yaml
+    notes: Await customer item detail
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: NEXT_STEP_EVIDENCE
+  evidence_kind: POLICY_RULE
+  source_id: null
+  claim_type: policy
+  description: Bước tiếp theo phải có căn cứ policy/ticket.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: policy_rule
+    ref_id: memory.read_order
+    path: config/policy.yaml
+    notes: Hybrid next-step grounding
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: TICKET_STATUS
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Trạng thái ticket theo Ticket Store.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: ticket.status
+    path: schemas/ticket.schema.json
+    notes: Ticket Store SoR
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: TICKET_STATUS_IN_REVIEW
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Ticket đang IN_REVIEW.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: IN_REVIEW
+    path: config/policy.yaml
+    notes: IN_REVIEW state
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: TICKET_IN_REVIEW
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Nhận diện ticket IN_REVIEW.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: IN_REVIEW
+    path: config/policy.yaml
+    notes: IN_REVIEW alias
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: TICKET_WAITING
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Ticket WAITING_CUSTOMER.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: WAITING_CUSTOMER
+    path: config/policy.yaml
+    notes: Waiting state
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: RESOLVE_ONE_TICKET
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Chỉ resolve đúng một ticket đã chọn.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: ambiguous_ticket_behavior
+    path: config/policy.yaml
+    notes: CLARIFY / single ticket
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: NEXT_STEP
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Nêu bước tiếp theo theo trạng thái ticket.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: ticket.next_step
+    path: data/scenarios/scenarios_dev.yaml
+    notes: Scenario ticket continuity
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: PRIOR_STEP
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Tham chiếu bước trước trong cùng ticket thread.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: ticket.prior_step
+    path: data/scenarios/scenarios_dev.yaml
+    notes: Prior turn ticket context
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: CONTINUITY
+  evidence_kind: TICKET_FIXTURE
+  source_id: null
+  claim_type: state
+  description: Duy trì liên tục ngữ cảnh ticket đa lượt.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: ticket_fixture
+    ref_id: multi_turn_continuity
+    path: data/scenarios/scenarios_dev.yaml
+    notes: Multi-turn ticket thread
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: SAFE_UPDATE
+  evidence_kind: POLICY_RULE
+  source_id: null
+  claim_type: policy
+  description: Cập nhật ticket chỉ qua structured action được phép.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: policy_rule
+    ref_id: llm_direct_database_write=false
+    path: config/policy.yaml
+    notes: Structured action only
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: PREFERENCE_UPDATE
+  evidence_kind: MEMORY_FIXTURE
+  source_id: null
+  claim_type: memory
+  description: Cập nhật preference memory hợp lệ.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: memory_fixture
+    ref_id: SUPPORT_PREFERENCE
+    path: config/policy.yaml
+    notes: Preference update
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: PREFERENCE_APP
+  evidence_kind: MEMORY_FIXTURE
+  source_id: null
+  claim_type: memory
+  description: Preference giao hóa đơn qua app.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: memory_fixture
+    ref_id: invoice_delivery=app
+    path: data/personas/personas.yaml
+    notes: Persona preference
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: PREFERENCE_CONFIRM
+  evidence_kind: MEMORY_FIXTURE
+  source_id: null
+  claim_type: memory
+  description: Xác nhận preference đã lưu.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: memory_fixture
+    ref_id: SUPPORT_PREFERENCE.confirm
+    path: schemas/memory.schema.json
+    notes: Confirm stored preference
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: DELETED_NOT_RECALLED
+  evidence_kind: MEMORY_FIXTURE
+  source_id: null
+  claim_type: memory
+  description: Memory DELETED không được recall.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: memory_fixture
+    ref_id: DELETED
+    path: config/policy.yaml
+    notes: Filter DELETED before rank
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: DELETE_WINS
+  evidence_kind: MEMORY_FIXTURE
+  source_id: null
+  claim_type: memory
+  description: Trạng thái DELETED thắng vector candidate cũ.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: memory_fixture
+    ref_id: lifecycle_filter
+    path: config/policy.yaml
+    notes: DELETE wins over stale vector hit
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_INVENTED_SLA
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không tự tạo thời hạn xử lý khi nguồn không nêu.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: no_invented_sla
+    path: docs/DATA_CONTRACT.md
+    notes: No invented SLA
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_REFUND_GUARANTEE
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không cam kết chắc chắn hoàn tiền hoặc bồi thường.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: refund_or_compensation_commitment
+    path: config/policy.yaml
+    notes: Hard gate
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_RETROACTIVE_DISCOUNT
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không hứa áp mã khuyến mại ngược.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: no_retroactive_discount
+    path: docs/DATA_CONTRACT.md
+    notes: Negative constraint
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_OLD_PREFERENCE
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không dùng preference đã supersede.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: no_superseded_preference
+    path: config/policy.yaml
+    notes: Superseded preference forbidden
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_ACCOUNT_BALANCE
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không tiết lộ số dư tài khoản giả định.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: no_account_balance
+    path: config/policy.yaml
+    notes: No fabricated balance
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_CROSS_USER_DATA
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không tiết lộ dữ liệu user khác.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: cross_user_leakage
+    path: config/policy.yaml
+    notes: Isolation hard gate
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate
+- fact_id: FORBID_DELETED_MEMORY
+  evidence_kind: NEGATIVE_CONSTRAINT
+  source_id: null
+  claim_type: forbid
+  description: Không tái sử dụng nội dung memory đã xóa.
+  evidence_spans: []
+  structured_evidence_refs:
+  - ref_type: negative_rule
+    ref_id: invalid_lifecycle_reuse
+    path: config/policy.yaml
+    notes: Deletion hard gate
+  notes: Offline fixture structured evidence candidate
+  evidence_status: candidate

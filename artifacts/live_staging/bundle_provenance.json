@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.2.0",
+  "data_origin": "live",
+  "run_id": "c2e49337-b36c-4cdb-a75a-9cbeb371d60b",
+  "materializer_version": "0.2.0",
+  "config_sha256": "a376bf43dc9e1c2e9868f197f37abb0fd06ce504b7aecf6cbbd0d51577186c0c",
+  "raw_sha256_by_url": {
+    "https://www.greensm.com/vn-vi/helps": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+    "https://www.greensm.com/vn-vi/terms-policies/general": "432c02405609f8d4af74528b24dff26f68cda47eb5816ae617cef710183dd474",
+    "https://www.greensm.com/vn-vi/terms-policies/regulations": "2d2247f4011082b676975e9e39b74b88dfc8ae1c3d27c96dd7a1771769fda55d",
+    "https://www.greensm.com/vn-vi/terms-policies/privacy-notice": "b5b2946ea649b4b282690d83b70e97838545585e81efdcd6a566e72a91063f42",
+    "https://www.greensm.com/vn-vi/terms-policies/service-agreement": "766067c5f2adb6913b7dcb74c2a0f0737bd23c25bc341eff7fca5bea750b7789"
+  },
+  "created_at": "2026-08-10T07:00:32+07:00",
+  "promotion_status": "staged_pending_research_approval",
+  "research_reviewed_by": null,
+  "research_reviewed_at": null,
+  "research_review_notes": "",
+  "staged_bundle_sha256": "860996a1460a905664cd87521c31510a5a5dfc0e8a9b1f077fd50600723b71cf",
+  "approved_bundle_sha256": null,
+  "bundle_file_sha256_by_path": {
+    "corpus_manifest.csv": "b29469cef37c3fada07eec3c544c623f33ce19a5ce3c5490849fdf344b39499b",
+    "by_source/GSM-HELP-TRIP-002.json": "0ead0ae6d801416d2e499ebe57bd532fb36177b3729a4f32e2bd1a4db20a9022",
+    "by_source/GSM-HELP-LOST-ITEM-213.json": "0d3958ccd29b6f520928303a45e0e7c339967424ad5178748177fe3e4ace6d59",
+    "by_source/GSM-HELP-GHOST-TRIP-217.json": "ccacab7bd08ffd45a873fd3e0d1826511f951d0983ed228d28e4aef68f4c6fd4",
+    "by_source/GSM-HELP-PAYMENT-301.json": "0b48a596ac60e5ed0cd50f1b8537af2ce858e4e3dd5e4c7a9195aca6a7e9ca5c",
+    "by_source/GSM-HELP-FARE-302.json": "f328d751d5c401dd600974ce27beeecff20ce69a950e64b237faf8a5374a0c89",
+    "by_source/GSM-HELP-INVOICE-304.json": "1e5116f066a5410dd5dabc20c3da2f6f721ff6628318e308c6b4f8d7b5d37e34",
+    "by_source/GSM-HELP-INVOICE-DIFF-305.json": "ec71ea1a400d88ac74174500993b71e3a68714b80fcb19932e5374aca3213c82",
+    "by_source/GSM-HELP-CANCELLED-CHARGE-306.json": "18e9545a4ebab372fad6f3507f1ba2597aa0a01d597b6767793a0210ef3cbee4",
+    "by_source/GSM-HELP-DUPLICATE-CHARGE-307.json": "5cbd6d30eef46f047fd9025fcb4289c08f178ffb40ae1f5e1d626dbe33b3aefc",
+    "by_source/GSM-HELP-PAYMENT-MISMATCH-308.json": "bbf2a187b9c310c431d2b4425a856ca4ce7b362c06073054b59515974c8c78c2",
+    "by_source/GSM-HELP-FARE-HIGHER-309.json": "7c85f9546e7283906eba4421c8f65c8af86aaad5366848a6fbaa8f09c2407dd5",
+    "by_source/GSM-HELP-PROMO-401.json": "112f12866c5e8e2e1ca56d3b1bc38d650300259a4c9608fc9e273860c56a1ff0",
+    "by_source/GSM-HELP-LOYALTY-405.json": "8eaf397df7b9d0cbf13467788c88d8c089b60bf2ebb9a8000178c4953a962862",
+    "by_source/GSM-HELP-SUPPORT-604.json": "0ad4dfe5202886fd8e190edc86bcebd038f46eecfc3695687ce44f488949a1a8",
+    "by_source/GSM-TERMS-GENERAL.json": "326695dad370cd8da1f9929b85e070f21984ba0fdfbbcb543473ed0b767efc87",
+    "by_source/GSM-TERMS-OPERATING.json": "8211e22a72a9a9f8070fecb640bbd206180c9fc4dd086df5b5999c1ee85bad23",
+    "by_source/GSM-TERMS-PRIVACY.json": "fc63f2a3efe83f9d9ac2782eca27a84eb524d09d16bbde74447ba8720584b351",
+    "by_source/GSM-TERMS-SERVICE.json": "4cea1e3b20cb07c5cd4e567cee12bf849b972c980d1f3338553ba86fada63e0a"
+  },
+  "auxiliary_script_urls": {}
+}

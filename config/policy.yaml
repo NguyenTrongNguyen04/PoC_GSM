@@ -1,0 +1,70 @@
+contract_version: 0.1.0
+ticket:
+  states:
+  - OPEN
+  - WAITING_CUSTOMER
+  - IN_REVIEW
+  - RESOLVED
+  - CLOSED
+  allowed_transitions:
+    OPEN:
+    - WAITING_CUSTOMER
+    - IN_REVIEW
+    WAITING_CUSTOMER:
+    - IN_REVIEW
+    IN_REVIEW:
+    - WAITING_CUSTOMER
+    - RESOLVED
+    RESOLVED:
+    - CLOSED
+    CLOSED: []
+  trusted_identity_source: execution_context
+  llm_direct_database_write: false
+memory:
+  allow_types:
+  - TICKET_REFERENCE
+  - SUPPORT_SUMMARY
+  - SUPPORT_PREFERENCE
+  deny_content:
+  - REAL_PII
+  - PAYMENT_CARD
+  - RAW_CONVERSATION
+  - POLICY_FACT
+  - REAL_TRIP_HISTORY
+  retention:
+    ticket_after_closed_days: 7
+    support_preference_days: 90
+  read_order:
+  - owner_filter
+  - lifecycle_filter
+  - status_filter
+  - ticket_lookup
+  - vector_retrieval
+  - reconcile
+  ambiguous_ticket_behavior: CLARIFY
+  ticket_store_wins_conflict: true
+hard_gates:
+  cross_user_leakage: 0
+  invalid_lifecycle_reuse: 0
+  unauthorized_write: 0
+  policy_bypass: 0
+  memory_overwrites_ticket: 0
+  ambiguous_ticket_auto_select: 0
+  refund_or_compensation_commitment: 0
+  missing_trace_rate: 0
+policy_precedence:
+  refund_and_compensation:
+    # Hard gate always outranks corpus FAQ phrasing when they conflict.
+    winning_control: hard_gates.refund_or_compensation_commitment
+    corpus_may_describe_source_text: true
+    assistant_may_promise_refund_or_compensation: false
+    rule: >
+      If a CORPUS FAQ (e.g. cancelled-trip charge) describes bank refund handling,
+      the assistant may cite that source text but MUST NOT make a refund/compensation
+      commitment. hard_gates.refund_or_compensation_commitment=0 and NEGATIVE_CONSTRAINT
+      facts (NO_GUARANTEE, FORBID_REFUND_GUARANTEE) take precedence over any corpus
+      phrasing that sounds like a guarantee.
+    related_fact_ids:
+      - NO_GUARANTEE
+      - FORBID_REFUND_GUARANTEE
+      - CANCELLED_CHARGE_GUIDANCE

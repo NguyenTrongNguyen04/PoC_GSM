@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1.0",
+  "source_id": "GSM-HELP-DUPLICATE-CHARGE-307",
+  "title": "FAQ 3.7 — Tính cước hai lần",
+  "canonical_url": "https://www.greensm.com/vn-vi/helps",
+  "requested_url": "https://www.greensm.com/vn-vi/helps",
+  "final_url": "https://www.greensm.com/vn-vi/helps",
+  "content_selector": "faq:3.7",
+  "language": "vi",
+  "publisher": "Green SM",
+  "fetched_at": "2026-08-09T23:46:28+07:00",
+  "http_status": 200,
+  "content_type": "text/html; charset=utf-8",
+  "raw_sha256": "898e02cb0f3967f8b0d3206fbfa645ee1afec79b88c8b3b9fde65a245f9bf1f8",
+  "content_sha256": "b4cd3528733526fadf5ccad05913d414e2c8dbce32d32ae6e0487c2e841a67dd",
+  "extraction_strategy": "dom_semantic",
+  "source_last_modified": null,
+  "parser_version": "0.1.0",
+  "normalizer_version": "0.1.0",
+  "normalized_text": "3.7. Tôi bị tính cước phí hai lần trong thẻ\nTrong trường hợp bạn nhận thấy mình bị tính phí nhiều lần trong thẻ cho chuyến xe Green SM, vui lòng kiểm tra lại những thông tin sau:\n- Truy cập vào mục “Hoạt động” -> “Lịch sử” để đảm bảo bạn không đặt nhiều chuyến xe cùng 1 lúc.\n- Kiểm tra sao kê, tra cứu giao dịch với ngân hàng phát hành thẻ của bạn về số tiền và số giao dịch thực tế bị trừ.\nSau khi kiểm tra, nếu bạn vẫn thấy chuyến xe bị tính cước phí nhiều lần, vui lòng gửi yêu cầu tại mục \"Trung tâm hỗ trợ\" trên ứng dụng Green SM để được kiểm tra và giải đáp kịp thời.",
+  "char_count": 574,
+  "topic_tags": [
+    "duplicate_charge"
+  ],
+  "priority": "critical",
+  "retrieval_role": "standalone",
+  "parent_source_id": null,
+  "faq_range": [
+    "3.7"
+  ]
+}

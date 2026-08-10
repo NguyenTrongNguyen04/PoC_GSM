@@ -1,0 +1,12 @@
+# Gemini runtime gates for B0.2A — independent from corpus live_fetch_enabled.
+gemini:
+  live_enabled: false
+  max_canary_queries: 3
+  canary_budget_usd: 0.25
+  timeout_seconds: 30
+  max_attempts: 3
+  model_runtime_validation: pending_canary
+  # model_id inherited from config/experiment.yaml models.generation.model_id
+  # Official SDK: google-genai==2.17.0
+  # Docs: https://googleapis.github.io/python-genai/index.html
+  # Verified: 2026-08-10 (documentation only; no live API call)

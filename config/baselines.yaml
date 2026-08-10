@@ -1,0 +1,47 @@
+contract_version: 0.1.0
+shared_components:
+- gemini_client
+- ticket_service
+- policy_engine
+- structured_action_schema
+- prompt_shell
+- token_budget
+- scenario_dataset
+- trace_logger
+baselines:
+- id: B0
+  name: LLM + Ticket
+  required: true
+  rag: false
+  lifecycle_memory: false
+  naive_vector_memory: false
+- id: B1
+  name: RAG + Ticket
+  required: true
+  rag: true
+  lifecycle_memory: false
+  naive_vector_memory: false
+- id: B2
+  name: Naive vector memory + Ticket
+  required: false
+  stretch_goal: true
+  rag: false
+  lifecycle_memory: false
+  naive_vector_memory: true
+- id: B3
+  name: Lifecycle MAG + Ticket
+  required: true
+  rag: false
+  lifecycle_memory: true
+  naive_vector_memory: false
+- id: B4
+  name: RAG + Lifecycle MAG + Ticket
+  required: true
+  rag: true
+  lifecycle_memory: true
+  naive_vector_memory: false
+fairness_rules:
+- All baselines use the same model, prompt shell, ticket service, policy and token limits.
+- Explicit ticket_id lookup is available to all baselines.
+- Held-out labels remain sealed until configuration freeze.
+- No baseline-specific prompt tuning after held-out inspection.
