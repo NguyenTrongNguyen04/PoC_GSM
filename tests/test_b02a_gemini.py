@@ -27,7 +27,7 @@ from poc_runtime.ticket_service import TicketService
 
 ROOT = Path(__file__).resolve().parents[1]
 EVAL_SHA = "dad9348245d46327f980f0221589f8a99fc3d9781e4f03a99682057ab7924be6"
-MANIFEST_SHA = "ea9122c6c356b6f8715de5d05ac2679fa4fa945d47c3a7faacb141da3eac436c"
+MANIFEST_SHA = "6b16a6297596fca798d46ac64175c270d3000a718165aa86ed81d6b15ce6c3cd"
 STAGED = "860996a1460a905664cd87521c31510a5a5dfc0e8a9b1f077fd50600723b71cf"
 FIXTURE = ROOT / "tests/fixtures/b0/fake_actions_dev.yaml"
 
